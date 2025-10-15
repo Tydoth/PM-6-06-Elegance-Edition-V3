@@ -79,7 +79,7 @@ function Smiler.new(target : Model, params : SmilerParams?): (Smiler)
   }, Smiler)
 end
 
--- Attacking behavior
+-- Attacking behavior i guess
 function Smiler.Attack(self : Smiler, target: PVInstance): ()
   if (not self.Finder:IsTargetInRange(target, 5)) then
     return
@@ -92,6 +92,7 @@ function Smiler.Attack(self : Smiler, target: PVInstance): ()
   if (not attacked) then
     return
   end
+-- stupid if statements in my way
   if (died) then
     self.Sounds:PlaySound("KilledTarget")
   else
@@ -99,7 +100,7 @@ function Smiler.Attack(self : Smiler, target: PVInstance): ()
   end
 end
 
--- Aggression behavior
+-- when the smiler is mad
 function Smiler.Aggro(self : Smiler, closest: PVInstance): ()
   self.Sounds:PlaySound("Yell")
   self.Sounds:PlaySound("TargetFound")
@@ -127,7 +128,7 @@ function Smiler.Aggro(self : Smiler, closest: PVInstance): ()
   self:Patrol()
 end
 
--- Acts as a condition if the entity could see the closest player.
+-- basically an if statement disguised as a function
 function Smiler.Check(self : Smiler, closest : PVInstance): ()
   local isInRange : boolean = self.Finder:IsTargetInRange(closest, self.Sight)
   local canSee    : boolean = self.Finder:CanSeeTarget(closest, self.Sight)
@@ -136,7 +137,7 @@ function Smiler.Check(self : Smiler, closest : PVInstance): ()
   end
 end
 
--- Moves to waypoints as well as checking if a player is in range.
+-- schmoving
 function Smiler.MoveToPoint(self : Smiler): ()
   local point       : PVInstance     = self.Waypoint:GetWaypoint()
   local path        : {PathWaypoint} = self.Waypoint:GetPath(point)
